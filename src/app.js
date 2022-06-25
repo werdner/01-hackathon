@@ -1,6 +1,8 @@
-import './styles.css';
-import { ContextMenu } from './menu';
+import './styles.css'
+import { ContextMenu } from './menu'
 
-const menu = new ContextMenu();
+const contextMenu = new ContextMenu('#menu');
 
-menu.open();
+contextMenu.open()
+contextMenu.add()
+contextMenu.trigger()
