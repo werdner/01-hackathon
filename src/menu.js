@@ -1,8 +1,7 @@
 import {Menu} from './core/menu'
 import { CallMessageModule } from './modules/call-message.module';
 
-const callMessageModule = new CallMessageModule('clickModule', 'Аналитика кликов');
-
+const callMessageModule = new CallMessageModule('message-text', 'Вызвать сообщение');
 export class ContextMenu extends Menu {
   constructor(selector) {
     super(selector);
@@ -29,6 +28,6 @@ export class ContextMenu extends Menu {
     contextMenu.insertAdjacentHTML('beforeend', callMessageModule.toHTML());
   }
   trigger() {
-    // callMessageModule.trigger();
+    callMessageModule.trigger();
   }
 }
