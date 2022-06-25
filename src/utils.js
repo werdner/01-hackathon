@@ -4,12 +4,12 @@ export function random(min, max) {
 
 export function clickCount() {
   const clickScore = document.querySelector('.click-score');
-  if (this.startTime !== 0) this.clickCounter++;
+  if (this.startTime > 0) this.clickCounter++;
   clickScore.textContent = `Click Score: ${this.clickCounter}`; 
 }
 
 export function dblClickCount() {
   const dblclickScore = document.querySelector('.dblclick-score');
-  if (this.startTime !== 0) this.clickCounter++;
+  if (this.startTime > 0 ) this.dblClickCounter++;
   dblclickScore.textContent = `Double Click Score: ${this.dblClickCounter}`; 
 }
