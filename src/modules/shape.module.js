@@ -34,14 +34,15 @@ export class ShapeModule extends Module {
     shape.style.height = shapeSizeHeight + 'px';
     shape.style.left = random(0, shapeLeftMax) + 'px';
     shape.style.top = random(0, shapeTopMax) + 'px';
-
+ 
     screen.append(shape);
   }
 
   trigger() {
     document.body.addEventListener('click', (event) => {
       if (event.target.dataset.type === 'shapeModule') {
-        this.renderShape()
+        this.renderShape();
+        shape.style.transition = "all 3s ease";
       } else {
         this.removeShape()
       }
