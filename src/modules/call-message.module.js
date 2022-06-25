@@ -35,6 +35,7 @@ export class CallMessageModule extends Module {
       `${messageText[randomNumber -1]}`, `${messageItemClasses[randomNumber -1]}`
     );
     const isItemExist = document.querySelector('.message-item');
+
     if (isItemExist) {
       isItemExist.remove();
     }
