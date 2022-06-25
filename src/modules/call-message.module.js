@@ -25,7 +25,11 @@ export class CallMessageModule extends Module {
 
   trigger() {
     const messageItemClasses = ['success', 'error', 'info'];
-    const messageText = ['success', 'error', 'info'];
+    const messageText = [
+      'success: cupiditate doloremque dolorum, ea facere itaque labore',
+      'error: incidunt non omnis quam quidem quod reiciendis',
+      'info: Deserunt excepturi minima quo repellendus tempora'
+    ];
     let randomNumber = random(1,3);
     const messageBlockHTML = this.createMessageBlock(
       `${messageText[randomNumber -1]}`, `${messageItemClasses[randomNumber -1]}`
