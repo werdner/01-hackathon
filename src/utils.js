@@ -20,20 +20,21 @@ export function getRandomColor() {
   return `rgb(${red},${green},${blue})`;
 }
 
-export function getRandomSoundURLs() {
-  const soundsRandomURLs = [
-    'https://cdn.freesound.org/previews/639/639661_11538612-lq.mp3',
-    'https://cdn.freesound.org/previews/639/639650_11943129-lq.mp3',
-    'https://cdn.freesound.org/previews/639/639692_13470105-lq.mp3',
-    'https://cdn.freesound.org/previews/639/639690_5993580-lq.mp3',
-    'https://cdn.freesound.org/previews/639/639670_8415824-lq.mp3',
-  ];
-  // let soundsRandomURLs = [];
-  // for (let i = 0; i < 10; i++) {
-  //   const two = getRandomNumbersString(0, 9, 2);
-  //   const seven = getRandomNumbersString(0, 9, 7);
-  //   const newRandomURL = `https://cdn.freesound.org/previews/639/6396${two}_${seven}-lq.mp3`;
-  //   soundsRandomURLs.push(newRandomURL);
-  // }
-  return soundsRandomURLs;
-}
+// export function getRandomSoundURLs() {
+//   // const soundsRandomURLs = [
+//   //   'https://cdn.freesound.org/previews/639/639661_11538612-lq.mp3',
+//   //   'https://cdn.freesound.org/previews/639/639650_11943129-lq.mp3',
+//   //   'https://cdn.freesound.org/previews/639/639692_13470105-lq.mp3',
+//   //   'https://cdn.freesound.org/previews/639/639690_5993580-lq.mp3',
+//   //   'https://cdn.freesound.org/previews/639/639670_8415824-lq.mp3',
+//   // ];
+//   // let soundsRandomURLs = [];
+//   // const maxURLs = 150;
+//   // for (let i = 0; i < maxURLs; i++) {
+//   //   const two = getRandomNumbersString(0, 9, 2);
+//   //   const seven = getRandomNumbersString(0, 9, 7);
+//   //   const newRandomURL = `https://cdn.freesound.org/previews/639/6396${two}_${seven}-lq.mp3`;
+//   //   soundsRandomURLs.push(newRandomURL);
+//   // }
+//   // return soundsRandomURLs;
+// }
