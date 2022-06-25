@@ -13,7 +13,7 @@ export class ShapeModule extends Module {
     }
   }
 
-  trigger() {
+  renderShape() {
     this.removeShape();
 
     const screen = document.querySelector('body');
@@ -36,5 +36,15 @@ export class ShapeModule extends Module {
     shape.style.top = random(0, shapeTopMax) + 'px';
 
     screen.append(shape);
+  }
+
+  trigger() {
+    document.body.addEventListener('click', (event) => {
+      if (event.target.dataset.type === 'shapeModule') {
+        this.renderShape()
+      } else {
+        this.removeShape()
+      }
+    })
   }
 }
