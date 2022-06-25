@@ -17,7 +17,7 @@ document.addEventListener('keydown', (event) => {
   //console.log('event', event); ///
   const { key } = event;
   if (key === 's') {
-    new SoundsModule('sound', 'random sound').trigger();
+    new SoundsModule('sound_element', 'random sound').trigger();
   }
 });
 //random sound test end

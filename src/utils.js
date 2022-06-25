@@ -16,11 +16,7 @@ export function getRandomColor() {
     RGB.push(random(0, 255));
   }
   const [red, green, blue] = RGB;
-  // let RGB = [0, 0, 0];
-  // const [red, green, blue] = RGB.map(() => {
-  //   return random(0, 255);
-  // });
-  console.log(RGB); ///
+
   return `rgb(${red},${green},${blue})`;
 }
 
@@ -32,7 +28,6 @@ export function getRandomSoundURLs() {
     'https://cdn.freesound.org/previews/639/639690_5993580-lq.mp3',
     'https://cdn.freesound.org/previews/639/639670_8415824-lq.mp3',
   ];
-
   // let soundsRandomURLs = [];
   // for (let i = 0; i < 10; i++) {
   //   const two = getRandomNumbersString(0, 9, 2);
