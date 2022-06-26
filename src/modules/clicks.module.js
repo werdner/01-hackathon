@@ -8,6 +8,7 @@ export class ClicksModule extends Module {
         this.clickCounter = -1;
         this.dblClickCounter = 0;
         this.startTime = 10;
+        this.intervalId = 0;
     }
 
     render() {
@@ -78,6 +79,7 @@ export class ClicksModule extends Module {
 
         let progress = setInterval(() => {
             this.startTime--;
+            this.intervalId = progress;
 
             progressValue.textContent = `${this.startTime}`;
             circleProgress.style.background = `conic-gradient(#7d2ae8, ${this.startTime * (360 / totalTime)}deg, #ededed 0deg)`
@@ -104,6 +106,13 @@ export class ClicksModule extends Module {
 
         const clickModalItem = document.querySelector('[data-type = "clickModule"]');
         clickModalItem.addEventListener('click', (event) => {
+          
+          if (this.intervalId !== 0) {
+            console.log('before',this.intervalId)
+            clearInterval(this.intervalId);
+            console.log('after',this.intervalId)
+          }
+
             const modal = document.querySelector('.timer-modal-item');
             this.clickCounter = -1;
             this.dblClickCounter = 0;
