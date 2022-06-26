@@ -14,9 +14,3 @@ export class BackgroundModule extends Module {
     // });
   }
 }
-
-// const soundsModule = new SoundsModule('sound_element', 'Издать звук');
-// const backgroundModule = new BackgroundModule(
-//     'background',
-//     'Цвет фона сменить!'
-//   );

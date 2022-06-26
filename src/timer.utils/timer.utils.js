@@ -1,6 +1,7 @@
 export function renderTimer() {
   const timerBlock = document.createElement('div');
   timerBlock.className = 'countdown-wrapper';
+  timerBlock.id = `tm${Date.now()}`;
 
   const countDownBlock = document.createElement('div');
   countDownBlock.className = 'countdown-timer';

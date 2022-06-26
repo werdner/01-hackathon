@@ -26,7 +26,7 @@ export class TimerModule extends Module {
   getValue() {
     let value = 0;
     const submitButton = document.querySelector('.submit-time-button');
-    submitButton.addEventListener('click', (event) => {
+    const getStartTime = () => {
       const inputValue = document.querySelector('.time-input');
       value = +inputValue.value;
       this.startTime = value;
@@ -34,6 +34,11 @@ export class TimerModule extends Module {
       if (value >= 0) {
         this.decreaseTimer();
       }
+    };
+
+    submitButton.addEventListener('click', (event) => {
+      //лиснер 1
+      getStartTime();
     });
   }
 
@@ -55,7 +60,7 @@ export class TimerModule extends Module {
           countdown.append(createSpan());
 
           setTimeout(() => {
-            countdown.remove();
+            this.removeModal(); //countdown.remove();
           }, 1000);
         }, 1000);
       }
@@ -69,38 +74,57 @@ export class TimerModule extends Module {
 
   close() {
     const crossBtn = document.querySelector('.cross-block');
-    const modal = document.querySelector('.countdown-wrapper');
-
-    crossBtn.addEventListener('click', (event) => {
-      closeByCross('.countdown-wrapper');
+    // const modal = document.querySelector('.countdown-wrapper');
+    const closeByBtn = () => {
+      this.removeModal(); //closeByCross('.countdown-wrapper');
       clearInterval(this.timerId);
+    };
+    crossBtn.addEventListener('click', (event) => {
+      // console.log('event', event.path[1].id); ///
+      // const closeId = event.path[1].id;
+      closeByBtn();
     });
+  }
+
+  removeModal() {
+    const submitButton = document.querySelector('.submit-time-button');
+    const crossBtn = document.querySelector('.cross-block');
+    const countdown = document.querySelector('.countdown-wrapper');
+
+    submitButton?.removeEventListener('click', (event) => {
+      getStartTime();
+    });
+    crossBtn?.removeEventListener('click', (event) => {
+      closeByBtn();
+    });
+
+    countdown.remove();
   }
 
   trigger(event) {
     const clickModalItem = document.querySelector('[data-type = "timer"]');
-      const countdown = document.querySelector('.countdown-wrapper');
-      const isModal = document.querySelector('.modal-window');
+    const countdown = document.querySelector('.countdown-wrapper');
+    const isModal = document.querySelector('.modal-window');
 
-      if (!countdown) {
-        this.render();
-        this.close();
-      }
+    if (!countdown) {
+      this.render();
+      this.close();
+    }
 
-      if (!isModal) {
-        getTime();
-      }
+    if (!isModal) {
+      getTime();
+    }
 
-      const submitButton = document.querySelector('.submit-time-button');
-      let value = 0;
-      submitButton.addEventListener('click', (event) => {
-        this.isThereInterval();
+    const submitButton = document.querySelector('.submit-time-button');
+    let value = 0;
+    submitButton.addEventListener('click', (event) => {
+      this.isThereInterval();
 
-        const inputValue = document.querySelector('.time-input');
-        value = +inputValue.value;
-        this.startTime = value * 1000;
-        this.decreaseTimer();
-      });
+      const inputValue = document.querySelector('.time-input');
+      value = +inputValue.value;
+      this.startTime = value * 1000;
+      this.decreaseTimer();
+    });
   }
 
   isThereInterval() {
