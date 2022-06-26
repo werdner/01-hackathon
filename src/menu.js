@@ -4,6 +4,8 @@ import { CallMessageModule } from './modules/call-message.module';
 import { ShapeModule } from './modules/shape.module';
 import { BackgroundModule } from './modules/background.module';
 import { SoundsModule } from './modules/sounds.module';
+import {DiceGameModule} from "@/modules/dice-game.module";
+
 
 const callMessage = new CallMessageModule('message-text', 'Вызвать сообщение');
 const clicksModule = new ClicksModule('clickModule', 'Аналитика кликов');
@@ -13,6 +15,7 @@ const backgroundModule = new BackgroundModule(
   'background',
   'Цвет фона сменить!'
 );
+const diceGameModule = new DiceGameModule('dice-game', 'Запустить игру');
 
 export class ContextMenu extends Menu {
   constructor(selector) {
@@ -22,7 +25,7 @@ export class ContextMenu extends Menu {
   open() {
     const contextMenu = document.querySelector('#menu');
     document.body.addEventListener('contextmenu', (event) => {
-      event.preventDefault();
+      // event.preventDefault();
 
       contextMenu.style.top = `${event.clientY}px`;
       contextMenu.style.left = `${event.clientX}px`;
@@ -43,6 +46,7 @@ export class ContextMenu extends Menu {
       shapeModule,
       soundsModule,
       backgroundModule,
+      diceGameModule,
     ];
 
     contextMenuItems.forEach((el) => {
@@ -55,5 +59,6 @@ export class ContextMenu extends Menu {
     shapeModule.trigger();
     soundsModule.trigger();
     backgroundModule.trigger();
+    diceGameModule.trigger();
   }
 }
