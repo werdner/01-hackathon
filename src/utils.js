@@ -26,6 +26,25 @@ export function getRandomColor() {
   return `rgb(${red},${green},${blue})`;
 }
 
+// export function createCross() {
+//   const crossBlock = document.createElement('button');
+//   const spanElement = document.createElement('span');
+//   crossBlock.className = 'cross-block';
+//   crossBlock.type = 'button';
+
+//   crossBlock.append(spanElement);
+
+//   return crossBlock;
+// }
+
+export function closeByCross(currentModal) {
+  const modal = document.querySelector(currentModal);
+
+  if (modal) {
+    modal.remove();
+  }
+}
+
 export function createCross() {
   const crossBlock = document.createElement('button');
   const spanElement = document.createElement('span');
@@ -37,10 +56,10 @@ export function createCross() {
   return crossBlock;
 }
 
-export function closeByCross(currentModal) {
-  const modal = document.querySelector(currentModal);
+// export function closeByCross(currentModal) {
+//   const modal = document.querySelector(currentModal);
 
-  if (modal) {
-    modal.remove();
-  }
-}
+//   if (modal) {
+//     modal.remove();
+//   }
+// }

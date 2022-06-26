@@ -150,9 +150,7 @@ export class ClicksModule extends Module {
     trigger(event) {
         const clickModalItem = document.querySelector('[data-type = "clickModule"]');
         if (this.intervalId !== 0) {
-        console.log('before',this.intervalId)
         clearInterval(this.intervalId);
-        console.log('after',this.intervalId)
         }
 
         const modal = document.querySelector('.timer-modal-item');
