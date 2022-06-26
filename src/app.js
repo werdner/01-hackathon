@@ -7,6 +7,7 @@ import { BackgroundModule } from './modules/background.module';
 import { SoundsModule } from './modules/sounds.module';
 import { TimerModule } from './modules/timer.module';
 import { DiceGameModule } from './modules/dice-game.module';
+import { BallCatcherModule } from './modules/ball-catcher.module';
 
 // инициализация меню + конструктор родительского класса из "core" создает переменную "el" по селектору #menu
 const contextMenu = new ContextMenu('#menu');
@@ -28,7 +29,8 @@ const shapeModule = new ShapeModule('shapeModule', 'Создать фигуру'
 const backgroundModule = new BackgroundModule('background', 'Цвет фона сменить!');
 const soundsModule = new SoundsModule('sound_element', 'Издать звук');
 const timerModule = new TimerModule("timer", "Таймер обратного отсчета");
-const diceGameModule = new DiceGameModule("dice-game", "Запустить игру");
+const diceGameModule = new DiceGameModule("dice-game", "Запустить игру 'Кости'");
+const ballCatcherModule = new BallCatcherModule("ball-catcher-game", "Запустить игру 'Мяч'");
 
 // добавление в меню модуля и его обрабтчика клика
 contextMenu.add(callMessage);
@@ -38,3 +40,4 @@ contextMenu.add(backgroundModule);
 contextMenu.add(soundsModule);
 contextMenu.add(timerModule);
 contextMenu.add(diceGameModule);
+contextMenu.add(ballCatcherModule);
