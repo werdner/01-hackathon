@@ -148,18 +148,117 @@ export function closeByCross(currentModal) {
 export function renderMazeMap() {
   const mbox = document.createElement('div');
   mbox.className = 'mbox';
+  mbox.id = 'mbox';
 
   const maze = document.createElement('div');
   maze.name = 'maze';
+  maze.id = 'maze';
 
   const person = document.createElement('div');
   person.className = 'person';
+  person.id = 'person';
 
   const goal = document.createElement('div');
-  goal.className = 'goal';
+  goal.className = 'goal'
+  goal.id = 'goal'
 
   const barrierTop = document.createElement('div');
   const barrierBottom = document.createElement('div');
   barrierTop.className = 'barrier-top';
   barrierBottom.className = 'barrier-bottom';
+}
+
+const cont = document.getElementById("container");
+const maze = document.getElementById("maze");
+const thingie = document.getElementById("person");
+const home = document.getElementById("goal");
+
+const step = 20;
+const size = 20;
+const bwidth = 2;
+const mazeHeight = 200;
+const mazeWidth = 300;
+
+let nogoX = [];
+let nogoX2 = [];
+let nogoY = [];
+let nogoY2 = [];
+let prevDist = mazeWidth * 2;
+
+//tilt vars
+let lastUD = 0;
+let lastLR = 0;
+const mThreshold = 15;
+let firstMove = true;
+let allowTilt = true;
+
+//swipe vars
+const sThreshold = 15;
+
+function genSides() {
+  let max = mazeHeight / step;
+  let l1 = Math.floor(Math.random() * max) * step;
+  //let l1 = 0;
+  let l2 = mazeHeight - step - l1;
+  //console.log(l1, l2);
+
+  let lb1 = document.createElement("div");
+  lb1.style.top = step + "px";
+  lb1.style.left = step + "px";
+  lb1.style.height = l1 + "px";
+
+  let lb2 = document.createElement("div");
+  lb2.style.top = l1 + step * 2 + "px";
+  lb2.style.left = step + "px";
+  lb2.style.height = l2 + "px";
+
+  let rb1 = document.createElement("div");
+  rb1.style.top = step + "px";
+  rb1.style.left = mazeWidth + step + "px";
+  rb1.style.height = l2 + "px";
+
+  let rb2 = document.createElement("div");
+  rb2.style.top = l2 + step * 2 + "px";
+  rb2.style.left = mazeWidth + step + "px";
+  rb2.style.height = l1 + "px";
+
+  //create invisible barriers for start and end: vertical left, vertical right, left top, left bottom, right top, right bottom
+  nogoX.push(0, mazeWidth + 2 * step, 0, 0, mazeWidth + step, mazeWidth + step);
+  nogoX2.push(
+    0 + bwidth,
+    mazeWidth + 2 * step + bwidth,
+    step,
+    step,
+    mazeWidth + 2 * step,
+    mazeWidth + 2 * step
+  );
+  nogoY.push(
+    l1 + step,
+    l2 + step,
+    l1 + step,
+    l1 + 2 * step,
+    l2 + step,
+    l2 + 2 * step
+  );
+  nogoY2.push(
+    l1 + 2 * step,
+    l2 + 2 * step,
+    l1 + step + bwidth,
+    l1 + 2 * step + bwidth,
+    l2 + step + bwidth,
+    l2 + 2 * step + bwidth
+  );
+  //set start-pos
+  thingie.style.top = l1 + step + "px";
+  thingie.style.left = 0 + "px";
+  //set end-pos & store height of end
+  home.style.top = l2 + step + "px";
+  home.style.left = mazeWidth + step + "px";
+
+  //style & append
+  let els = [lb1, lb2, rb1, rb2];
+  for (let i = 0; i < els.length; i++) {
+    confSideEl(els[i]);
+    maze.appendChild(els[i]);
+  }
 }
