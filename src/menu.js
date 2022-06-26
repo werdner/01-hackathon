@@ -28,7 +28,7 @@ export class ContextMenu extends Menu {
   open() {
     const contextMenu = document.querySelector('#menu');
     document.body.addEventListener('contextmenu', (event) => {
-      event.preventDefault();
+      // event.preventDefault();
 
       contextMenu.style.top = `${event.clientY}px`;
       contextMenu.style.left = `${event.clientX}px`;

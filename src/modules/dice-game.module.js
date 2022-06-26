@@ -17,7 +17,7 @@ export class DiceGameModule extends Module {
 
   createDiceGameHTML() {
     const cross = createCross();
-    console.log('cross', cross)
+
     const diceGameContainerHTML = document.createElement('div');
     diceGameContainerHTML.id = 'dice-game-container';
 

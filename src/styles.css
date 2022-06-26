@@ -161,9 +161,9 @@ body {
     justify-content:flex-start;
 }
 .message-item{
-    text-align: center;
+    text-align: left;
     position:relative;
-    padding:15px 10px;
+    padding:20px 20px;
     background:#111;
     color:#f5f5f5;
     font-size:14px;
