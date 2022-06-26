@@ -101,9 +101,6 @@ export class ClicksModule extends Module {
     }
 
     trigger() {
-
-        const clickModalItem = document.querySelector('[data-type = "clickModule"]');
-        clickModalItem.addEventListener('click', (event) => {
             const modal = document.querySelector('.timer-modal-item');
             this.clickCounter = -1;
             this.dblClickCounter = 0;
@@ -115,6 +112,5 @@ export class ClicksModule extends Module {
 
             this.render();
             this.startButton()
-        })
     }
 }

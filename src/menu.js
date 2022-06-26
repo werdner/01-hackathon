@@ -1,48 +1,32 @@
 import {Menu} from './core/menu'
-import { ClicksModule } from './modules/clicks.module';
-import { CallMessageModule } from './modules/call-message.module';
-import { ShapeModule } from './modules/shape.module';
-
-const callMessage = new CallMessageModule('message-text', 'Вызвать сообщение');
-const clicksModule = new ClicksModule('clickModule', 'Аналитика кликов');
-const shapeModule = new ShapeModule('shapeModule', 'Создать фигуру');
 
 export class ContextMenu extends Menu {
     constructor(selector) {
         super(selector);
     }
 
-    open() {
-        const contextMenu = document.querySelector('#menu');
-        document.body.addEventListener('contextmenu', event => {
-            event.preventDefault();
+    open(event) {
+        event.preventDefault(); // отмена вызова стандртного контекстного в меню
+        this.el.style.top = `${event.clientY}px`; // в app.js при инициализации меню для "el" будет присвоен 'ul' с '#menu'
+        this.el.style.left = `${event.clientX}px`;
+        this.el.classList.add('open');
+        document.body.addEventListener('click', event => {
+            if (event.target.className !== 'menu-item') {
+                this.close();
+            };
+        });
+    };
 
-            contextMenu.style.top = `${event.clientY}px`;
-            contextMenu.style.left = `${event.clientX}px`;
-            contextMenu.classList.add('open');
-
-            document.body.addEventListener('click', event => {
-                if (event.button !== 2) {
-                    contextMenu.classList.remove('open');
-                }
-            })
+    // при вызове в app.js метод добавляет модуль в начало меню. 'afterbegin' так как затем на первый надейнный (только что добавленный) навешивается обработчик клика для вызова триггера модуля
+    add(module) {
+        this.el.insertAdjacentHTML('afterbegin', module.toHTML());
+        this.el.querySelector('.menu-item').addEventListener('click', (event) => {
+            module.trigger(event);
+            this.close();
         });
     }
-    add() {
-        const contextMenu = document.querySelector('#menu');
-        const contextMenuItems = [
-            clicksModule,
-            callMessage,
-            shapeModule
-        ];
 
-        contextMenuItems.forEach((el) => {
-            contextMenu.insertAdjacentHTML('beforeend', el.toHTML());
-        })
-    }
-    trigger() {
-        clicksModule.trigger();
-        callMessage.trigger();
-        shapeModule.trigger();
+    close() {
+        this.el.classList.remove('open');
     }
 }
