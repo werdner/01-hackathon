@@ -1,6 +1,8 @@
 import {Module} from '../core/module'
 import {clickCount} from '../utils';
-import { dblClickCount } from '../utils';
+import {dblClickCount} from '../utils';
+import {createCross} from '../utils';
+import {closeByCross} from '../utils';
 
 export class ClicksModule extends Module {
     constructor(type, text) {
@@ -13,6 +15,7 @@ export class ClicksModule extends Module {
 
     render() {
         const modal = document.createElement('div');
+        const crossBlock = createCross();
 
         const startButton = document.createElement('button');
         startButton.className = 'start-button';
@@ -40,6 +43,7 @@ export class ClicksModule extends Module {
 
         modal.append(timerBlockContainer);
         modal.append(startButton);
+        modal.append(crossBlock);
 
         document.body.append(modal);
     }
@@ -56,9 +60,8 @@ export class ClicksModule extends Module {
         dblClickScoreSpan.textContent = 'Double Click Score: 0';
 
         scoreInfo.append(clickScoreSpan, dblClickScoreSpan);
-
+        
         const startButton = document.querySelector('.start-button');
-        const modal = document.querySelector('.timer-modal-item');
         startButton.addEventListener('click', event => {
             if (event.target.className === 'start-button') {
                 this.decreaseTimer();
@@ -102,11 +105,19 @@ export class ClicksModule extends Module {
         modal.addEventListener('dblclick', dblClickCount.bind(this));
     }
 
-    trigger() {
+    close() {
+      const crossBtn = document.querySelector('.cross-block');
+      const modal = document.querySelector('.timer-modal-item');
 
+      crossBtn.addEventListener('click', event => {
+        closeByCross('.timer-modal-item');
+      })
+    }
+
+    trigger() {
         const clickModalItem = document.querySelector('[data-type = "clickModule"]');
         clickModalItem.addEventListener('click', (event) => {
-          
+
           if (this.intervalId !== 0) {
             console.log('before',this.intervalId)
             clearInterval(this.intervalId);
@@ -123,7 +134,8 @@ export class ClicksModule extends Module {
             }
 
             this.render();
-            this.startButton()
+            this.close();
+            this.startButton();
         })
     }
 }

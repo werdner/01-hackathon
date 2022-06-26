@@ -3,6 +3,8 @@ import {renderTimer} from '../utils'
 import {getTime} from '../utils'
 import {calcTime} from '../utils'
 import {createSpan} from '../utils'
+import {createCross} from '../utils';
+import {closeByCross} from '../utils';
 
 export class TimerModule extends Module {
     constructor(type, text) {
@@ -13,6 +15,11 @@ export class TimerModule extends Module {
 
     render() {
         renderTimer();
+
+        const block = document.querySelector('.countdown-wrapper');
+        const crossBlock = createCross();
+
+        block.append(crossBlock)
     }
 
     getValue() {
@@ -58,6 +65,15 @@ export class TimerModule extends Module {
         this.timerId = start;
     }
 
+    close() {
+        const crossBtn = document.querySelector('.cross-block');
+        const modal = document.querySelector('.countdown-wrapper');
+  
+        crossBtn.addEventListener('click', event => {
+          closeByCross('.countdown-wrapper');
+        })
+    }
+
     trigger() {
 
         const clickModalItem = document.querySelector('[data-type = "timer"]');
@@ -67,6 +83,7 @@ export class TimerModule extends Module {
 
             if (!countdown) {    
                 this.render();
+                this.close();
             }
 
             if (!isModal) {

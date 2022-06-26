@@ -125,3 +125,22 @@ export function createSpan() {
 
   return timerSpan;
 }
+
+export function createCross() {
+  const crossBlock = document.createElement('button');
+  const spanElement = document.createElement('span');
+  crossBlock.className = 'cross-block';
+  crossBlock.type = 'button';
+
+  crossBlock.append(spanElement);
+
+  return crossBlock;
+}
+
+export function closeByCross(currentModal) {
+  const modal = document.querySelector(currentModal);
+
+  if (modal) {
+    modal.remove();
+  }
+}
