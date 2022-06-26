@@ -18,7 +18,7 @@ export class SoundsModule extends Module {
     soundHTML.classList = 'sound_element'; //this.type;
     soundHTML.id = `se${Date.now()}`;
     soundHTML.src = `${soundsURLs[random(0, this.soundsURLsLength)]}`;
-
+    soundHTML.alt = 'No sound, sorry :(';
     return soundHTML;
   }
 
