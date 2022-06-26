@@ -2,7 +2,7 @@ import { Module } from '../core/module';
 import { random } from '../utils';
 import { soundsDefaultURLs } from '../sound.utils/constants';
 
-const soundsURLs = soundsDefaultURLs; //getRandomSoundURLs();
+const soundsURLs = soundsDefaultURLs;
 
 export class SoundsModule extends Module {
   constructor(type, text) {
@@ -15,7 +15,7 @@ export class SoundsModule extends Module {
     const soundHTML = document.createElement('audio');
     //soundHTML.controls = '1';
     soundHTML.autoplay = '1';
-    soundHTML.classList = 'sound_element'; //this.type;
+    soundHTML.classList = 'sound_element';
     soundHTML.id = `se${Date.now()}`;
     soundHTML.src = `${soundsURLs[random(0, this.soundsURLsLength)]}`;
     soundHTML.alt = 'No sound, sorry :(';
@@ -41,9 +41,3 @@ export class SoundsModule extends Module {
     });
   }
 }
-
-// const soundsModule = new SoundsModule('sound_element', 'Издать звук');
-// const backgroundModule = new BackgroundModule(
-//     'background',
-//     'Цвет фона сменить!'
-//   );

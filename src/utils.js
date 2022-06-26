@@ -2,16 +2,18 @@ export function random(min, max) {
   return Math.round(min - 0.5 + Math.random() * (max - min + 1));
 }
 
-export function clickCount() {
-  const clickScore = document.querySelector('.click-score');
-  if (this.startTime > 0) this.clickCounter++;
-  clickScore.textContent = `Click Score: ${this.clickCounter}`;
-}
-
-export function dblClickCount() {
-  const dblclickScore = document.querySelector('.dblclick-score');
-  if (this.startTime > 0) this.dblClickCounter++;
-  dblclickScore.textContent = `Double Click Score: ${this.dblClickCounter}`;
+export function clickCount(isDouble) {
+  if (isDouble) {
+    const dblclickScore = document.querySelector('.dblclick-score');
+    if (this.startTime > 0) this.dblClickCounter++;
+    dblclickScore.textContent = `Double Click Score: ${this.dblClickCounter}`;
+  } else {
+    const clickScore = document.querySelector('.click-score');
+    if (this.startTime > 0) this.clickCounter++;
+    if (clickScore) {
+      clickScore.textContent = `Click Score: ${this.clickCounter}`;
+    }
+  }
 }
 
 export function getRandomColor() {
