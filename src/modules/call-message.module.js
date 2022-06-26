@@ -20,7 +20,7 @@ export class CallMessageModule extends Module {
 
   trigger() {
     const menuMessageItem = document.querySelector('[data-type="message-text"]');
-    menuMessageItem.addEventListener('click', (event) => {
+    // menuMessageItem.addEventListener('click', (event) => {
       const messageItemClasses = ['success', 'error', 'info'];
       const messageText = [
         'success: cupiditate doloremque dolorum, ea facere itaque labore',
@@ -41,7 +41,6 @@ export class CallMessageModule extends Module {
       setTimeout(() => {
         this.removeMessageBlock();
       }, 3000);
-    })
+    // })
   }
-
 }

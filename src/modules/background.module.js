@@ -6,12 +6,12 @@ export class BackgroundModule extends Module {
     document.body.style = `background: ${getRandomColor()}`;
   }
 
-  trigger() {
-    document.body.addEventListener('click', (event) => {
+  trigger(event) {
+    // document.body.addEventListener('click', (event) => {
       if (event.target.dataset.type === 'background') {
         this.getColor();
       }
-    });
+    // });
   }
 }
 
