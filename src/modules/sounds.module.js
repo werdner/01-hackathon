@@ -33,11 +33,11 @@ export class SoundsModule extends Module {
     }, random(1500, 8000));
   }
 
-  trigger() {
-    document.body.addEventListener('click', (event) => {
+  trigger(event) {
       if (event.target.dataset.type === 'sound_element') {
         this.play();
       }
-    });
   }
+
+
 }

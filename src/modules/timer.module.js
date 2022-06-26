@@ -85,6 +85,7 @@ export class TimerModule extends Module {
     });
   }
 
+
   removeModal() {
     const submitButton = document.querySelector('.submit-time-button');
     const crossBtn = document.querySelector('.cross-block');
@@ -100,9 +101,10 @@ export class TimerModule extends Module {
     countdown.remove();
   }
 
-  trigger() {
+
+  trigger(event) {
+
     const clickModalItem = document.querySelector('[data-type = "timer"]');
-    clickModalItem.addEventListener('click', (event) => {
       const countdown = document.querySelector('.countdown-wrapper');
       const isModal = document.querySelector('.modal-window');
 
@@ -125,7 +127,6 @@ export class TimerModule extends Module {
         this.startTime = value * 1000;
         this.decreaseTimer();
       });
-    });
   }
 
   isThereInterval() {

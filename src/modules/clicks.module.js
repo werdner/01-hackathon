@@ -147,27 +147,26 @@ export class ClicksModule extends Module {
     modal?.remove();
   }
 
-  trigger() {
-    const clickModalItem = document.querySelector(
-      '[data-type = "clickModule"]'
-    );
-    clickModalItem.addEventListener('click', (event) => {
-      if (this.intervalId !== 0) {
+    trigger(event) {
+        const clickModalItem = document.querySelector('[data-type = "clickModule"]');
+        if (this.intervalId !== 0) {
+        console.log('before',this.intervalId)
         clearInterval(this.intervalId);
-      }
+        console.log('after',this.intervalId)
+        }
 
-      const modal = document.querySelector('.timer-modal-item');
-      this.clickCounter = -1;
-      this.dblClickCounter = 0;
-      this.startTime = 10;
+        const modal = document.querySelector('.timer-modal-item');
+        this.clickCounter = -1;
+        this.dblClickCounter = 0;
+        this.startTime = 10;
 
-      if (modal) {
-        this.removeModal();
-      }
+        if (modal) {    
+            modal.remove()
+        }
 
-      this.render();
-      this.close();
-      this.startButton();
-    });
-  }
+        this.render();
+        this.close();
+        this.startButton();
+    }
 }
+
