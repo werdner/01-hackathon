@@ -51,7 +51,6 @@ export class CallMessageModule extends Module {
 
   trigger() {
     const menuMessageItem = document.querySelector('[data-type="message-text"]');
-    // menuMessageItem.addEventListener('click', (event) => {
       const isMessageBlockHTML = document.querySelector('#message-area');
       if (isMessageBlockHTML) {
         this.removeMessageBlock()
@@ -68,8 +67,8 @@ export class CallMessageModule extends Module {
         `${(messageItemClasses[randomNumber -1]).toLocaleUpperCase()}:`,
         `${messageText[randomNumber -1]}`, `${messageItemClasses[randomNumber -1]}`
       );
-      document.body.append(messageBlockHTML);
+
+      document.querySelector('#area').append(messageBlockHTML);
       this.close()
-    // })
   }
 }

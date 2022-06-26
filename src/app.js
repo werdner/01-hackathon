@@ -11,6 +11,11 @@ import { DiceGameModule } from './modules/dice-game.module';
 // инициализация меню + конструктор родительского класса из "core" создает переменную "el" по селектору #menu
 const contextMenu = new ContextMenu('#menu');
 
+const area = document.createElement("div");
+area.classList.add("area");
+area.id = "area";
+document.body.append(area);
+
 // обработчик на правый клик для открытия меню
 document.body.addEventListener('contextmenu',  event => {
   contextMenu.open(event);
@@ -24,8 +29,6 @@ const backgroundModule = new BackgroundModule('background', 'Цвет фона �
 const soundsModule = new SoundsModule('sound_element', 'Издать звук');
 const timerModule = new TimerModule("timer", "Таймер обратного отсчета");
 const diceGameModule = new DiceGameModule("dice-game", "Запустить игру");
-
-
 
 // добавление в меню модуля и его обрабтчика клика
 contextMenu.add(callMessage);

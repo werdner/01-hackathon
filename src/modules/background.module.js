@@ -7,10 +7,8 @@ export class BackgroundModule extends Module {
   }
 
   trigger(event) {
-    // document.body.addEventListener('click', (event) => {
       if (event.target.dataset.type === 'background') {
         this.getColor();
       }
-    // });
   }
 }

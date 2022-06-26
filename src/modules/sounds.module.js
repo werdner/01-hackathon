@@ -13,7 +13,6 @@ export class SoundsModule extends Module {
 
   createSoundHTML() {
     const soundHTML = document.createElement('audio');
-    //soundHTML.controls = '1';
     soundHTML.autoplay = '1';
     soundHTML.classList = 'sound_element';
     soundHTML.id = `se${Date.now()}`;
@@ -38,6 +37,4 @@ export class SoundsModule extends Module {
         this.play();
       }
   }
-
-
 }

@@ -43,6 +43,8 @@ export function closeByCross(currentModal) {
   if (modal) {
     modal.remove();
   }
+
+  
 }
 
 export function createCross() {

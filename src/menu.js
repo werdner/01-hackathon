@@ -20,69 +20,14 @@ export class ContextMenu extends Menu {
     add(module) {
         this.el.insertAdjacentHTML('afterbegin', module.toHTML());
         this.el.querySelector('.menu-item').addEventListener('click', (event) => {
+            const area = document.querySelector("#area");
+            area.innerHTML = "";
             module.trigger(event);
             this.close();
         });
     }
 
     close() {
-        this.el.classList.remove('open');
+      this.el.classList.remove('open');
     }
 }
-
-// import { TimerModule } from './modules/timer.module';
-
-//   'background',
-//   'Цвет фона сменить!'
-// );
-
-// export class ContextMenu extends Menu {
-//   constructor(selector) {
-//     super(selector);
-//   }
-
-//   open() {
-//     const contextMenu = document.querySelector('#menu');
-//     document.body.addEventListener('contextmenu', (event) => {
-//       event.preventDefault();
-
-//       contextMenu.style.top = `${event.clientY}px`;
-//       contextMenu.style.left = `${event.clientX}px`;
-//       contextMenu.classList.add('open');
-
-//       document.body.addEventListener('click', (event) => {
-//         if (event.button !== 2) {
-//           this.el.classList.remove("open");
-//         }
-//       });
-//     });
-//   }
-//   add() {
-//     const contextMenu = document.querySelector('#menu');
-//     const contextMenuItems = [
-//       clicksModule,
-//       callMessage,
-//       shapeModule,
-//       soundsModule,
-//       backgroundModule,
-//       timerModule
-//     ];
-
-//     contextMenuItems.forEach((el) => {
-//       contextMenu.insertAdjacentHTML('beforeend', el.toHTML());
-//     });
-//   }
-
-//   close() {
-//     this.el.classList.remove("open");
-//   }
-
-//   trigger() {
-//     clicksModule.trigger();
-//     callMessage.trigger();
-//     shapeModule.trigger();
-//     soundsModule.trigger();
-//     backgroundModule.trigger();
-//     timerModule.trigger();
-//   }
-// }

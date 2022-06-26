@@ -68,7 +68,7 @@ export class DiceGameModule extends Module {
     ];
 
     const diceGameMenuItem = document.querySelector('[data-type="dice-game"]');
-      document.body.append(this.createDiceGameHTML());
+      document.querySelector('#area').append(this.createDiceGameHTML());
 
       const cross = document.querySelector('.cross-block');
       cross.style.background = 'mediumseagreen';

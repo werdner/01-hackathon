@@ -39,7 +39,7 @@ export function renderTimer() {
 
   countDownBlock.append(daysBlock, hoursBlock, minutesBlock, seconndsBlock);
   timerBlock.append(countDownBlock);
-  document.body.append(timerBlock);
+  document.querySelector('#area').append(timerBlock);
 }
 
 export function getTime() {

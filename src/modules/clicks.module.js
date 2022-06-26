@@ -1,9 +1,7 @@
 import { Module } from '../core/module';
 import { clickCount } from '../utils';
-//import { dblClickCount } from '../utils';
 import { createCross } from '../utils';
 import { closeByCross } from '../utils';
-//import { getHTML } from '../cliks.utils/click.utils';
 
 export class ClicksModule extends Module {
   constructor(type, text) {
@@ -52,7 +50,7 @@ export class ClicksModule extends Module {
     modal.append(startButton);
     modal.append(crossBlock);
 
-    document.body.append(modal);
+    document.querySelector('#area').append(modal);
   }
 
   startButton() {
@@ -126,12 +124,11 @@ export class ClicksModule extends Module {
   close() {
     const crossBtn = document.querySelector('.cross-block');
     crossBtn.addEventListener('click', (event) => {
-      this.removeModal(); //closeByCross('.timer-modal-item');
+      this.removeModal();
     });
   }
 
   removeModal() {
-    //this.startTime = -1;
     const modal = document.querySelector('.timer-modal-item');
     const startButton = modal?.querySelector('.start-button');
     const crossBtn = document.querySelector('.cross-block');
@@ -167,4 +164,3 @@ export class ClicksModule extends Module {
         this.startButton();
     }
 }
-
