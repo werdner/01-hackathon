@@ -1,6 +1,8 @@
 import {Module} from '../core/module'
 import {clickCount} from '../utils';
-import { dblClickCount } from '../utils';
+import {dblClickCount} from '../utils';
+import {createCross} from '../utils';
+import {closeByCross} from '../utils';
 
 export class ClicksModule extends Module {
     constructor(type, text) {
@@ -8,10 +10,12 @@ export class ClicksModule extends Module {
         this.clickCounter = -1;
         this.dblClickCounter = 0;
         this.startTime = 10;
+        this.intervalId = 0;
     }
 
     render() {
         const modal = document.createElement('div');
+        const crossBlock = createCross();
 
         const startButton = document.createElement('button');
         startButton.className = 'start-button';
@@ -39,6 +43,7 @@ export class ClicksModule extends Module {
 
         modal.append(timerBlockContainer);
         modal.append(startButton);
+        modal.append(crossBlock);
 
         document.body.append(modal);
     }
@@ -55,9 +60,8 @@ export class ClicksModule extends Module {
         dblClickScoreSpan.textContent = 'Double Click Score: 0';
 
         scoreInfo.append(clickScoreSpan, dblClickScoreSpan);
-
+        
         const startButton = document.querySelector('.start-button');
-        const modal = document.querySelector('.timer-modal-item');
         startButton.addEventListener('click', event => {
             if (event.target.className === 'start-button') {
                 this.decreaseTimer();
@@ -78,6 +82,7 @@ export class ClicksModule extends Module {
 
         let progress = setInterval(() => {
             this.startTime--;
+            this.intervalId = progress;
 
             progressValue.textContent = `${this.startTime}`;
             circleProgress.style.background = `conic-gradient(#7d2ae8, ${this.startTime * (360 / totalTime)}deg, #ededed 0deg)`
@@ -100,10 +105,25 @@ export class ClicksModule extends Module {
         modal.addEventListener('dblclick', dblClickCount.bind(this));
     }
 
-    trigger() {
+    close() {
+      const crossBtn = document.querySelector('.cross-block');
+      const modal = document.querySelector('.timer-modal-item');
 
+      crossBtn.addEventListener('click', event => {
+        closeByCross('.timer-modal-item');
+      })
+    }
+
+    trigger() {
         const clickModalItem = document.querySelector('[data-type = "clickModule"]');
         clickModalItem.addEventListener('click', (event) => {
+
+          if (this.intervalId !== 0) {
+            console.log('before',this.intervalId)
+            clearInterval(this.intervalId);
+            console.log('after',this.intervalId)
+          }
+
             const modal = document.querySelector('.timer-modal-item');
             this.clickCounter = -1;
             this.dblClickCounter = 0;
@@ -114,7 +134,8 @@ export class ClicksModule extends Module {
             }
 
             this.render();
-            this.startButton()
+            this.close();
+            this.startButton();
         })
     }
 }

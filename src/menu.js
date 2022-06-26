@@ -32,7 +32,7 @@ export class ContextMenu extends Menu {
 
       document.body.addEventListener('click', (event) => {
         if (event.button !== 2) {
-          contextMenu.classList.remove('open');
+          this.el.classList.remove("open");
         }
       });
     });
