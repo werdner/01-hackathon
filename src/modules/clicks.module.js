@@ -165,7 +165,7 @@ export class ClicksModule extends Module {
     this.startTime = 10;
 
     if (modal) {
-      modal.remove();
+      this.removeModal(); //modal.remove();
     }
 
     this.render();

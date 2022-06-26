@@ -30,11 +30,8 @@ export class ContextMenu extends Menu {
     }
 }
 
-// import { SoundsModule } from './modules/sounds.module';
 // import { TimerModule } from './modules/timer.module';
 
-// const soundsModule = new SoundsModule('sound_element', 'Издать звук');
-// const timerModule = new TimerModule("timer", "Таймер обратного отсчета");
 //   'background',
 //   'Цвет фона сменить!'
 // );
