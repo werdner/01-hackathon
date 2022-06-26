@@ -68,7 +68,6 @@ export class DiceGameModule extends Module {
     ];
 
     const diceGameMenuItem = document.querySelector('[data-type="dice-game"]');
-    diceGameMenuItem.addEventListener('click', (event) => {
       document.body.append(this.createDiceGameHTML());
 
       const cross = document.querySelector('.cross-block');
@@ -102,7 +101,5 @@ export class DiceGameModule extends Module {
 
       }
       this.close()
-
-    });
   }
 }
