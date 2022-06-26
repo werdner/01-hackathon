@@ -77,8 +77,6 @@ export class DiceGameModule extends Module {
       diceButton.addEventListener('click', () => {
         let diceLeftValue = random(1,6);
         let diceRightValue = random(1,6);
-        console.log('diceLeftValue', diceLeftValue);
-        console.log('diceRightValue', diceRightValue);
         diceRoll (diceLeftValue, diceRightValue);
       });
 
