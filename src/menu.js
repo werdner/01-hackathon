@@ -4,11 +4,13 @@ import { CallMessageModule } from './modules/call-message.module';
 import { ShapeModule } from './modules/shape.module';
 import { BackgroundModule } from './modules/background.module';
 import { SoundsModule } from './modules/sounds.module';
+import { TimerModule } from './modules/timer.module';
 
 const callMessage = new CallMessageModule('message-text', 'Вызвать сообщение');
 const clicksModule = new ClicksModule('clickModule', 'Аналитика кликов');
 const shapeModule = new ShapeModule('shapeModule', 'Создать фигуру');
 const soundsModule = new SoundsModule('sound_element', 'Издать звук');
+const timerModule = new TimerModule("timer", "Таймер обратного отсчета");
 const backgroundModule = new BackgroundModule(
   'background',
   'Цвет фона сменить!'
@@ -43,17 +45,24 @@ export class ContextMenu extends Menu {
       shapeModule,
       soundsModule,
       backgroundModule,
+      timerModule
     ];
 
     contextMenuItems.forEach((el) => {
       contextMenu.insertAdjacentHTML('beforeend', el.toHTML());
     });
   }
+
+  close() {
+    this.el.classList.remove("open");
+  }
+
   trigger() {
     clicksModule.trigger();
     callMessage.trigger();
     shapeModule.trigger();
     soundsModule.trigger();
     backgroundModule.trigger();
+    timerModule.trigger();
   }
 }

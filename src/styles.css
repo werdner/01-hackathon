@@ -215,3 +215,92 @@ h1 {
     line-height: 1;
     margin: 0 0 5px;
 }
+
+.countdown-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 400px;
+    height: 215px;
+    margin: 0 auto;
+    margin-top: 15%;
+    padding: 15px;
+    border-radius: 25px;
+    box-shadow: 0px 0px 10px 2px #0001;
+}
+
+.modal-window {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 170px;
+    height: 90px;
+    margin: 5px auto;
+    padding: 10px;
+    background-color: #ffffff;
+    border-radius: 20px;
+    box-shadow: 0px 0px 10px 2px #0001;
+}
+
+.countdown-timer {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+.input-field {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.time-input {
+    display: block;
+    width: 60px;
+    margin-right: 10px;
+    padding: 10px 5px;
+    border-radius: 8px;
+    border: 1px solid #e8e8e8;
+}
+
+.submit-time-button {
+    position: relative;
+    width: 136px;
+    height: 30px;
+    line-height: 1;
+    padding: 0;
+    border: none;
+    border-radius: 7px;
+    background: #f2f2f2;
+}
+.submit-time-button:hover {
+    color: #000;
+    background: transparent;
+    box-shadow:none;
+}
+.submit-time-button:before,
+.submit-time-button:after{
+    content:'';
+    position:absolute;
+    top:0;
+    height:2px;
+    right: 10px;
+    width:0;
+    background: #c0a;
+    transition:400ms ease all;
+}
+
+.submit-time-button:after{
+    right:inherit;
+    top:inherit;
+    left:10px;
+    bottom:0;
+}
+.submit-time-button:hover:before,
+.submit-time-button:hover:after{
+    width: 85%;
+    transition:800ms ease all;
+}
