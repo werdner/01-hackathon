@@ -67,6 +67,6 @@ export class ContextMenu extends Menu {
     soundsModule.trigger();
     backgroundModule.trigger();
     timerModule.trigger();
-    ballCatcherModule.trigger();
+    ballCatcherModule.listener();
   }
 }

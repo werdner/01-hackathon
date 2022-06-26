@@ -6,7 +6,7 @@ export class BallCatcherModule extends Module {
     super(type, text);
   }
 
-  createMessageBlock() {
+  createBallCatcherBlock() {
     const timeArray = [10, 20, 30, 40, 50]
 
     const ballCatcherContainerHTML = document.createElement('div');
@@ -45,9 +45,16 @@ export class BallCatcherModule extends Module {
       timeListHTML.append(timeListItemHTML);
     })
 
+    const btnGameAgain = document.createElement('button');
+    btnGameAgain.style.opacity = '0';
+    btnGameAgain.id = 'new-game';
+    btnGameAgain.className = 'new-game';
+    btnGameAgain.textContent = 'Закрыть окно'
+
+
 
     timeCounterHTML.append(timeCounterSpanHTML)
-    boardWrapHTML.append(timeCounterHTML, boardHTML, startBtnHTML, timeListHTML)
+    boardWrapHTML.append(timeCounterHTML, boardHTML, startBtnHTML, timeListHTML, btnGameAgain)
     ballCatcherContainerHTML.append(boardWrapHTML)
 
 
@@ -55,24 +62,20 @@ export class BallCatcherModule extends Module {
 
   }
 
-  removeMessageBlock() {
-    const messageBlockHTML = document.querySelector('#message-area');
-    messageBlockHTML.remove()
+
+  listener () {
+    const ballCatcherItem = document.querySelector('[data-type="ball-catcher"]');
+    ballCatcherItem.addEventListener('click', (event) => {
+      this.trigger();
+    })
   }
 
   trigger() {
-    document.body.append(this.createMessageBlock())
+    const isBallCatcherContainer = document.querySelector('#ball-catcher-container');
+    if (!isBallCatcherContainer) {
+      document.body.append(this.createBallCatcherBlock());
+    }
 
-    //===================================
-    const startBtn = document.querySelector('#start')
-
-    const timeList = document.querySelector('#time-list')
-
-    const timeEl = document.querySelector('#time')
-
-    const board = document.querySelector('#board')
-
-    const newGame = document.querySelector('#new-game')
 
     const colors = ['#83B799', '#E2CD6D', '#C2B28F', '#E4D8B4', '#E86F68', '#f87171',
       '#fb923c', '#ea580c', '#65a30d', '#065f46', '#2563eb', '#6d28d9', '#86198f']
@@ -81,11 +84,19 @@ export class BallCatcherModule extends Module {
     let score = 0
 
 
+    const newGame = document.querySelector('#new-game');
+    const startBtn = document.querySelector('#start');
+    const timeList = document.querySelector('#time-list');
+    const timeEl = document.querySelector('#time');
+    const board = document.querySelector('#board');
+    const titleCounter = document.querySelector('.title-counter');
+    console.log('titleCounter', titleCounter)
+
     startBtn.addEventListener('click', (event) => {
-      event.preventDefault()
+      event.preventDefault();
       startBtn.style.display = 'none';
       timeList.style.display = 'flex';
-    })
+    });
 
     timeList.addEventListener('click', event => {
       if (event.target.classList.contains('time-btn')) {
@@ -93,20 +104,20 @@ export class BallCatcherModule extends Module {
         timeList.style.display = 'none';
         startGame()
       }
-    })
+    });
 
     board.addEventListener('click', event => {
       if (event.target.classList.contains('circle')) {
         score++
-        event.target.remove()
-        createRandomCircle()
+        event.target.remove();
+        createRandomCircle();
       }
-    })
+    });
 
     function startGame() {
-      setInterval(decreaseTime, 1000)
-      createRandomCircle()
-      setTime(time)
+      setInterval(decreaseTime, 1000);
+      createRandomCircle();
+      setTime(time);
     }
 
     function decreaseTime() {
@@ -123,18 +134,18 @@ export class BallCatcherModule extends Module {
     }
 
     function setTime(value) {
-      timeEl.innerHTML = `00:${value}`
+      timeEl.innerHTML = `:${value}`
     }
 
     function finishGame() {
       timeEl.parentNode.classList.add('hide')
-      board.innerHTML = `<h1>Cчет: <span class="primary">${score}</span></h1><button class="new-game" id="new-game">Начать сначала</button>`
-      const newGame = document.querySelector('#new-game')
+      board.innerHTML = `<h1>Cчет: <span class="primary">${score}</span></h1>`
+      titleCounter.style.display = 'none';
+      newGame.style.opacity = '1'
       newGame.addEventListener('click', (event) => {
-        location.reload();
-        return false
-      })
+        location.reload()
 
+      })
     }
 
     function createRandomCircle() {
@@ -143,7 +154,7 @@ export class BallCatcherModule extends Module {
       const {width, height} = board.getBoundingClientRect()
       const x = getRandomNumber(0, width - size)
       const y = getRandomNumber(0, height - size)
-      const backgroundColor = gettRondomColor()
+      const backgroundColor = getRandomColor()
 
       circle.classList.add('circle')
       circle.style.background = `${backgroundColor}`
@@ -159,54 +170,11 @@ export class BallCatcherModule extends Module {
       return Math.round(Math.random() * (max - min) + min)
     }
 
-    function gettRondomColor () {
+    function getRandomColor () {
       const index = Math.floor(Math.random() * colors.length)
       return colors[index]
     }
-    //===================================
+
   }
 
 }
-
-
-
-
-
-
-
-
-// <div className="screen">
-//   <h1>Aim Training</h1>
-//   <a href="#" className="start" id="start">Начать игру</a>
-// </div>
-//
-// <div className="screen">
-//   <h1>Выберите время</h1>
-//   <ul className="time-list" id="time-list">
-//     <li>
-//       <button className="time-btn" data-time="10">
-//         10 сек
-//       </button>
-//     </li>
-//     <li>
-//       <button className="time-btn" data-time="20">
-//         20 сек
-//       </button>
-//     </li>
-//     <li>
-//       <button className="time-btn" data-time="30">
-//         30 сек
-//       </button>
-//     </li>
-//     <li>
-//       <button className="time-btn" data-time="45">
-//         45 сек
-//       </button>
-//     </li>
-//   </ul>
-// </div>
-//
-// <div className="screen">
-//   <h3>Осталось <span id="time">00:00</span></h3>
-//   <div className="board" id="board"></div>
-// </div>
