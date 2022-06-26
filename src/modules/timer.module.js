@@ -70,6 +70,7 @@ export class TimerModule extends Module {
         const modal = document.querySelector('.countdown-wrapper');
   
         crossBtn.addEventListener('click', event => {
+          this.isThereInterval();
           closeByCross('.countdown-wrapper');
         })
     }

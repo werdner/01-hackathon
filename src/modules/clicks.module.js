@@ -49,6 +49,7 @@ export class ClicksModule extends Module {
     }
 
     startButton() {
+        const modal = document.querySelector('.timer-modal-item');
         const scoreInfo = document.createElement('div');
         scoreInfo.className = 'score-info';
 
@@ -134,8 +135,8 @@ export class ClicksModule extends Module {
             }
 
             this.render();
-            this.close();
             this.startButton();
+            this.close();
         })
     }
 }

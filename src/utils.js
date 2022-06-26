@@ -144,3 +144,22 @@ export function closeByCross(currentModal) {
     modal.remove();
   }
 }
+
+export function renderMazeMap() {
+  const mbox = document.createElement('div');
+  mbox.className = 'mbox';
+
+  const maze = document.createElement('div');
+  maze.name = 'maze';
+
+  const person = document.createElement('div');
+  person.className = 'person';
+
+  const goal = document.createElement('div');
+  goal.className = 'goal';
+
+  const barrierTop = document.createElement('div');
+  const barrierBottom = document.createElement('div');
+  barrierTop.className = 'barrier-top';
+  barrierBottom.className = 'barrier-bottom';
+}
