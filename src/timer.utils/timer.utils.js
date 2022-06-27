@@ -62,7 +62,7 @@ export function getTime() {
   const submitButton = document.createElement('button');
   submitButton.className = 'submit-time-button';
   submitButton.tyepe = 'button';
-  submitButton.textContent = 'Set Timer';
+  submitButton.textContent = 'Set / Reset time';
 
   inputField.append(getTimeInput, inputFieldSpan);
 
