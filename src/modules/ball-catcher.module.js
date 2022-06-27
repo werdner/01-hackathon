@@ -90,7 +90,6 @@ export class BallCatcherModule extends Module {
     const timeEl = document.querySelector('#time');
     const board = document.querySelector('#board');
     const titleCounter = document.querySelector('.title-counter');
-    console.log('titleCounter', titleCounter)
 
     startBtn.addEventListener('click', (event) => {
       event.preventDefault();
